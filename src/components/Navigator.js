@@ -2,7 +2,7 @@ import { useAuth } from '../provider/AuthProvider'
 import { useForm } from 'react-hook-form'
 
 
-const Navigator = ({ types, handleSelect, onSubmit }) => {
+const Navigator = ({ types, handleSelectType, handleSelectAmount, onSubmit }) => {
 
     const { register, handleSubmit } = useForm()
     const { signOut, trainer } = useAuth()        
@@ -24,9 +24,20 @@ const Navigator = ({ types, handleSelect, onSubmit }) => {
                     <input className='input' type='text' {...register('value')} placeholder='Find a Pokemon...'/>                    
                 </form>
              
-                    <select onChange={handleSelect}>
-                        <option defaultValue value={null}>Select type</option>
+                    <select onChange={handleSelectType}>
+                        <option defaultValue >Select type</option>
+                        <option value={'all'}>All</option>
                         {typeOptions}
+                    </select>
+
+                    
+                    <select className='select-numbers-pokemons' onChange={handleSelectAmount}>
+                        <option defaultValue  value={null}>Select amount</option>
+                        <option value={4}>4</option>
+                        <option value={8}>8</option>
+                        <option value={12}>12</option>
+                        <option value={16}>16</option>
+                        <option value={20}>20</option>
                     </select>
             </div>
             

@@ -29,14 +29,15 @@ const PokemonChar = ({ abilities, weight, height, types, species }) => {
                 </div>
 
                 <div className='left-details-container'>
-                    <div className='d-flex'>
-                        <h5>Weight:&nbsp;</h5><span>{weight} hg.</span>
+                    <div className='d-flex detail-center'>
+                        <h5>Weight:&nbsp;</h5><span>{weight}hg.</span>
                     </div>
 
-                    <div className='d-flex'>
-                        <h5>Height:&nbsp;</h5><span>{height} dm.</span>
+                    <div className='d-flex detail-center'>
+                        <h5>Height:&nbsp;</h5><span>{height}dm.</span>
                     </div>
                 </div>
+
             </div>
 
             <div className='col-6 right-details-container'>

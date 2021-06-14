@@ -56,9 +56,22 @@ body {
   margin: 0 20px;
 }
 
+.btn-login {
+  width: 50%;
+  background: rgb(24, 76, 188);
+  transition: 0.1s;
+}
+
+.btn-login:hover {
+  width: 50%;
+  background: rgb(24, 76, 188);
+  transform: scale(1.1);
+  transition: 0.1s;
+}
+
 .card-body {
   display: flex;  
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -80,6 +93,7 @@ body {
   text-decoration: none;
   transition: 0.2s;
   height: 300px;
+  box-shadow: -7px 7px 5px 0px rgba(13, 13, 13, 0.304);
 }
 
 .card-container:hover {
@@ -105,7 +119,7 @@ body {
 .card-info {
   text-align: left;
   line-height: 6px;
-  font-size: 1.2rem;  
+  font-size: 1rem;  
 }
 
 .card-types {
@@ -126,27 +140,40 @@ body {
   align-items: center;
   height: 100%;
   max-width: 40vw;
-  background: chartreuse;
+  
 }
 
 .char-container {
-  height: 45%;
+  height: 100%; 
+  overflow: hidden;
  
 }
 
 .config-btn {  
   position: fixed;
-  right: 20px;
+  right: 0px;
   top: 80px;
-  padding: 8px;
+  height: 40px;
+  width: 40px;
   border-radius: 10px;
   border: 6px solid rgb(89, 85, 84);
   cursor: pointer;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .col-6 {
   width: 50%;
 }
+
+.detail-center {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+
 
 .form-container {
   margin-left: 20px;
@@ -156,6 +183,23 @@ body {
   border-radius: 5px;
   padding: 4px;
   margin: 0 40px 0 0;
+}
+
+.input-container {
+  border: 1px solid rgba(219, 210, 210, 0.297);
+  padding: 50px;
+  border-radius: 10px;
+  background: rgb(225, 143, 143);
+  box-shadow: -7px 7px 5px 0px rgba(13, 13, 13, 0.304);
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+}
+
+.input-login {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .left-details-container {
@@ -171,7 +215,10 @@ body {
   font-size: 1rem;
 }
 
-
+.menu-container {
+  height: 500px;
+  width: 300px;
+}
 
 .moves-container {
   display: flex;
@@ -179,8 +226,10 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: chocolate;
+  padding: 2rem;  
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.153); 
+  overflow: auto;
 }
 
 .navbar {
@@ -212,14 +261,13 @@ body {
   justify-content: flex-start;
   height: 100%;
   width: 100%;      
-  background: #e6d8d8;
+  
 }
 
-.pokemon-chars {
-  background: #a69bca;
+.pokemon-chars {  
   width:  600px;
   height: 90%;
- 
+  align-items: flex-start;
 }
 
 .pokemon-detail {
@@ -248,7 +296,7 @@ body {
   display: flex;    
   justify-content: center;
   align-items: center;
-  width:  600px;
+  width:  600px;  
   border-radius: 10px 10px 0 0;
   background: rgba(0, 0, 0, 0.2);
   margin-top: 10px;
@@ -284,7 +332,18 @@ body {
 
 .pokemon-logo {
   width: 300px;
-  margin: 15px 0 40px 0;
+  position: relative;
+  top: -50px;
+}
+
+.pokemon-logo-pokedex {
+  width: 300px;
+  margin: 20px 0 40px 0;
+  
+}
+
+.select-numbers-pokemons {
+  margin-left: 40px;
 }
 
 
@@ -312,6 +371,7 @@ body {
   width: 70px;
   animation: rotation 2s infinite linear;  
 }
+
 
 @keyframes rotation {
   from {

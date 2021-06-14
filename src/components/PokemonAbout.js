@@ -7,7 +7,7 @@ const PokemonAbout = ({ moves }) => {
             
      
     return (
-        <div className='pokemon-chars overflow-auto moves-container'>          
+        <div className='pokemon-chars moves-container'>          
                 {list}     
         </div>
     )

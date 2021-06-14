@@ -10,12 +10,8 @@ import getPokemons from '../services/getPokemons'
 
 const Pokemon = () => {
     
-    const { PokemonName } = useParams()
-    
+    const { PokemonName } = useParams()    
 
-    // const [ abilities, abilities ] = useState([])
-    // const [ height, setHeight ] = useState(0)
-    // const [ weight, weight ] = useState(0)
     const [ moves, setMoves ] = useState([])
     const [ types, setTypes ] = useState([])
     const [ pokedexNumber, setPokedexNumber ] = useState(0)
@@ -55,11 +51,18 @@ const Pokemon = () => {
         getPokemons(`https://pokeapi.co/api/v2/pokemon/${PokemonName}`)     
             .then(pokemon => {
                 setIsLoading(false)
-                console.log(pokemon)
+                
                 setMoves(pokemon.moves)
                 setTypes(pokemon.types)
                 setPokedexNumber(pokemon.order)
-                setPokemonImg(pokemon.sprites.other['official-artwork']['front_default'])
+
+                if (pokemon.sprites.other['official-artwork']['front_default'] !== null) {
+                    setPokemonImg(pokemon.sprites.other['official-artwork']['front_default']) 
+
+                } else {
+                    setPokemonImg(pokemon.sprites.front_default)
+                }
+               
                 setWeight(pokemon.weight)
                 setHeight(pokemon.height)
                 setAbilities(pokemon.abilities)

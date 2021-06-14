@@ -11,21 +11,19 @@ const Routes = () => {
     
     return (
         <Switch>
+        
             <Route path='/' exact component={Login}/>
+
             <ProtectedRoute path='/pokedex' exact > 
-
-            <Pokedex />
+                <Pokedex />
             </ProtectedRoute>
-            <Route path='/pokedex/pokemon/:PokemonName' component={Pokemon}/>
-            <Route path='*' component={NoMatch}/>            
-            
-            {/* <Route path='/' exact>
-                <Login />
-            </Route>
 
-            <ProtectedRoute path='/pokedex' exact>
-                <Pokedex/>
-            </ProtectedRoute> */}
+            <ProtectedRoute path='/pokedex/pokemon/:PokemonName' >
+                <Pokemon />
+            </ProtectedRoute>         
+
+            <Route path='*' component={NoMatch}/>                       
+           
         </Switch>
     )
 }
