@@ -88,11 +88,11 @@ body {
   margin: 1rem;
   margin-bottom: 50px;
   width: 250px;
+  height: 230px;
   border-radius: 10% 10% 10% 10%;
   color: rgb(26, 24, 24);
   text-decoration: none;
   transition: 0.2s;
-  height: 300px;
   box-shadow: -7px 7px 5px 0px rgba(13, 13, 13, 0.304);
 }
 
@@ -167,6 +167,12 @@ body {
   width: 50%;
 }
 
+.container-pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .detail-center {
   justify-content: center;
   align-items: center;
@@ -237,6 +243,10 @@ body {
   justify-content: space-between;
   min-width: 100vw;
   background:  #fb6c6c;
+}
+
+.selected-page {
+  background: #6d6685;
 }
 
 .pagination {
@@ -318,11 +328,11 @@ body {
   transform: scale(0.9); 
   color: rgb(26, 24, 24); 
 }
-
-
 .pokedex {
   min-height: 100vh;
-  
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .pokedex-id {

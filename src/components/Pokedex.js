@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react'
 import Navigator from './Navigator'
 import PokemonCard from "./PokemonCard"
 import Loader from './Loader'
+import Pagination from './Pagination'
 
 import getPokemons from '../services/getPokemons'
-
-
 
 
 const Pokedex = () => {
@@ -27,12 +26,20 @@ const Pokedex = () => {
     
     
     
-    // const [ currentPage, setCurrentPage ] = useState(1)
+    const [ currentPage, setCurrentPage ] = useState(1)
+    const [ maxPageNumberLimit, setMaxPageNumberLimit ] = useState(10)
+    const [ minPageNumberLimit, setMinPageNumberLimit ] = useState(0)
+    const [ paginationLength ] = useState(10)
+
+    //Debo cambiar la paginationLength a 8 elementos para poder agregar ... a ambos lados de la paginacion
+    
     
 
-        // const indexOfLastPokemon = currentPage * pokemonsPerPage;
-        // const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
-        // const currentPokemons = pokemons
+        const indexOfLastPokemon = currentPage * pokemonsPerPage;
+        const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+        const currentPokemons = filteredPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)
+
+
     
            
     //This to get the pokemons and types options
@@ -43,8 +50,7 @@ const Pokedex = () => {
             .then(data => {                     
                 setIsLoading(false)         
                 setPokemons(data.results)                
-                setPokemonsAmount(data.count)       
-                
+                setPokemonsAmount(data.count)     
             })
 
 
@@ -68,65 +74,84 @@ const Pokedex = () => {
                         setPokemons(copy)                    
                     })
             } else {
-                    getPokemons(`${URL_BASE}/pokemon?limit=1118&offset=0`)
+                    getPokemons(`${URL_BASE}/pokemon?limit=${pokemonsAmount}&offset=0`)
                         .then(data => {
                             setPokemons(data.results)
                         })
-
-
                 }
             }
-    }, [selectedType, pokemonsPerPage])
+    }, [selectedType, pokemonsAmount])
 
+    
     //This handle the data passed on TEXT INPUT to get pokemons filtered
     useEffect(() => {
         setFilteredPokemons(pokemons.filter( pokemon => {
             return pokemon.name.toLowerCase().includes(toSearch.toLowerCase())
         }))
 
-    }, [toSearch, pokemons])
+    }, [toSearch, pokemons])   
 
+    useEffect(() => {
+
+    }, [paginationLength])
+  
     
-
-    const pages = []
-
-    for(let i=1; i <= Math.ceil(pokemonsAmount/pokemonsPerPage); i++) {
-        pages.push(i)
-    }
-
-
-    // const renderPagination = pages.map( (num) => {
-    //     return (
-    //         <li key={num} id={num}>
-    //             {num}
-    //         </li>
-    //     )
-    // })
-    
-    //this handle the input to search a pokemon
-    
+    //this catch the input value to search a pokemon    
     const onSubmit = (value) => {
         setToSearch(value.value)
-
     }
 
-    //This handle the input Types of Pokemons
+    //This catch the input Types of Pokemons value
     const handleSelectType = (e) => {
-        setSelectedType(e.target.value)
-        
+        setSelectedType(e.target.value)        
     }
 
     const handleSelectAmount = (e) => {
-        setPokemonsPerPage(e.target.value)
-        
+        setPokemonsPerPage(e.target.value)        
     }
 
     const handleMenu = () => {
         console.log('click')
     }
 
+    const paginate = (pageNum) => {
+        setCurrentPage(pageNum)
+    }
 
-    const listOfPokemons = filteredPokemons.slice(0, pokemonsPerPage).map( (elem) => {
+
+    const handlePrevPage = () => {
+        console.log(currentPage, 'Current page from prevPage')
+        if (currentPage > 1) {
+            setCurrentPage(currentPage-1)
+        } else {
+            return null
+        }            
+        
+        console.log(currentPage)
+        console.log(minPageNumberLimit)
+        console.log(maxPageNumberLimit)        
+
+        if (currentPage - 1 === minPageNumberLimit) {        
+            setMaxPageNumberLimit(maxPageNumberLimit - paginationLength)
+            setMinPageNumberLimit(minPageNumberLimit - paginationLength)
+        }
+    }
+
+    const handleNextPage = () => {
+         console.log(currentPage, 'Current page from nextPage')
+        if(currentPage < indexOfLastPokemon) {
+            setCurrentPage(currentPage+1)
+        } else {
+            return null
+        }         
+        
+        if (currentPage === maxPageNumberLimit) {    
+            setMaxPageNumberLimit(maxPageNumberLimit + paginationLength)
+            setMinPageNumberLimit(minPageNumberLimit + paginationLength)
+        }
+    }
+
+    const listOfPokemons = currentPokemons.slice(0, pokemonsPerPage).map( (elem) => {
       
         return (
             <div className='col-3' key={elem.name}>
@@ -138,8 +163,10 @@ const Pokedex = () => {
     return (
         <div className='pokedex'>  
         
-            <Navigator types={types} handleSelectAmount={handleSelectAmount} handleSelectType={handleSelectType} onSubmit={onSubmit}/>      
             <div>
+                <Navigator types={types} handleSelectAmount={handleSelectAmount} handleSelectType={handleSelectType} onSubmit={onSubmit}/>      
+            <div>
+
             
                 <img className='pokemon-logo-pokedex' alt='pokemon-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png'/>                    
 
@@ -149,8 +176,22 @@ const Pokedex = () => {
             </div>
 
             <div className='cards-container'> { (!isLoading) ? listOfPokemons : <Loader /> } </div>
+            <div className='container-pagination'>
+                <Pagination 
+                    paginate={paginate} 
+                    pokemonsAmount={pokemonsAmount} 
+                    pokemonsPerPage={currentPokemons.length} 
+                    minPageNumberLimit={minPageNumberLimit} 
+                    maxPageNumberLimit={maxPageNumberLimit} 
+                    handlePrevPage={handlePrevPage}
+                    handleNextPage={handleNextPage}
+                    currentPage={currentPage}
+                    />
+            </div>
+            </div>
 
-            <ul className='pagination'> {/* {renderPagination} */} </ul>                    
+
+
         </div>
     )
 }

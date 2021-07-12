@@ -37,7 +37,7 @@ const Navigator = ({ types, handleSelectType, handleSelectAmount, onSubmit }) =>
                         <option value={8}>8</option>
                         <option value={12}>12</option>
                         <option value={16}>16</option>
-                        <option value={20}>20</option>
+                        <option value={20}>20</option>                       
                     </select>
             </div>
             
