@@ -16,9 +16,9 @@ const Pagination = ({ pokemonsPerPage, pokemonsAmount, paginate, currentPage, ma
         if(num < maxPageNumberLimit+1 && num > minPageNumberLimit) {
             return (
                 <li key={num} className="page-item">
-                    <button onClick={() => paginate(num)} className={ (currentPage === num) ? "page-link selected-page" : "page-link" }>
+                    <div onClick={() => paginate(num)} className={ (currentPage === num) ? "page-link selected-page" : "page-link" }>
                         {num}
-                    </button>                        
+                    </div>                        
                 </li>
             )
         } else {
@@ -32,13 +32,13 @@ const Pagination = ({ pokemonsPerPage, pokemonsAmount, paginate, currentPage, ma
             <ul className='pagination'>
                
                 <li className="page-item">
-                    <button onClick={() => handlePrevPage()} className='page-link'>Prev</button>
+                    <div onClick={() => handlePrevPage()} className='page-link'>Prev</div>
                 </li>
 
                 { renderPagination }
 
-                <li className='pagination'>
-                    <button onClick={() => handleNextPage()} className='page-link'>Next</button>
+                <li className='page-item"'>
+                    <div onClick={() => handleNextPage()} className='page-link'>Next</div>
                 </li>
                 
             </ul>

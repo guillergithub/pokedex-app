@@ -1,44 +1,61 @@
-import { useHistory } from 'react-router-dom'
-import { useAuth } from '../provider/AuthProvider'
-import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
-
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import pikachu from "../asserts/pikachu.png";
+import logo from "../asserts/pocket-dex-logo.png";
+import {
+  FormContainer,
+  GreetContainer,
+  Input,
+  InputContainer,
+  LoginContainer,
+  LogoContainer,
+  PikachuContainer,
+  Container,
+  SignInContainer,
+} from "./Login/styled";
 
 const Login = () => {
-    
-    const { register, handleSubmit } = useForm()
-    const { signIn, trainer } = useAuth()
-    const history = useHistory()
+  const { register, handleSubmit } = useForm();
+  const { signIn, trainer } = useAuth();
+  const history = useHistory();
 
-    const onSubmit = (values) => {   
-           
-        signIn(values.trainer, () => { })
-        
+  const onSubmit = (values) => {
+    signIn(values.trainer, () => {});
+  };
+
+  useEffect(() => {
+    if (trainer) {
+      history.push("/pokedex");
     }
+  }, [trainer, history]);
 
-    useEffect( () => {
-        if (trainer) {                        
-            history.push('/pokedex')
-        }
-    }, [trainer, history])
-    
-   
-    return (
-        <>
-            <form className='login-container' onSubmit={handleSubmit(onSubmit)}>
-                <img className='pokemon-logo' alt='pokemon-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png'/>                    
+  return (
+    <Container>
+      <LoginContainer>
+        <SignInContainer  onSubmit={handleSubmit(onSubmit)}>
+          <InputContainer>
+            <LogoContainer>
+              <img alt="logo" src={logo} />
+            </LogoContainer>
+            <GreetContainer>
+              <h1>Benvenido entrenador</h1>
+              <h5>Inicia sesion para checar tus pokemones favoritos</h5>
+            </GreetContainer>
+            <FormContainer>
+              <Input placeholder="Add your name" {...register("trainer")} />
+              <button className="btn btn-primary mt-3 btn-login">Entrar</button>
+            </FormContainer>
+          </InputContainer>
+        </SignInContainer>
 
-               <div className='input-container'>                    
-                    <h1 className='mb-4'>Welcome trainer</h1>
-                    
-                    <input className='input-login' placeholder='Add your name' {...register('trainer')}/>
+        <PikachuContainer>
+          <img alt="pokemon-logo" src={pikachu} />
+        </PikachuContainer>
+      </LoginContainer>
+    </Container>
+  );
+};
 
-                    <button className='btn btn-primary btn-login'>Log in</button>         
-               </div>   
-
-            </form>
-        </>
-    )
-}
-
-export default Login
+export default Login;

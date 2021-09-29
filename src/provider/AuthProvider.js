@@ -1,45 +1,44 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from "react";
 
-const authContext = createContext()
+const authContext = createContext();
 
 const fakeAuthService = {
-    login: (cb) => {
-        setTimeout(cb, 500)
-    }, 
-    logout: (cb) => {
-        setTimeout(cb, 500)
-    }    
-}
+  login: (cb) => {
+    setTimeout(cb, 500);
+  },
+  logout: (cb) => {
+    setTimeout(cb, 500);
+  },
+};
 
-const  useProvideAuth = () => {
-    const [ trainer, setTrainer ] = useState(null)
+const useProvideAuth = () => {
+  const [trainer, setTrainer] = useState(null);
 
-    const signIn = (name, cb) => {
-        fakeAuthService.login( () => {
-            console.log('AuthProvider' , name)
-            setTrainer(name)
-            cb()
-        })
-    }
+  const signIn = (name, cb) => {
+    fakeAuthService.login(() => {
+      setTrainer(name);
+      cb();
+    });
+  };
 
-    const signOut = (cb) => {
-        fakeAuthService.logout( () => {
-            setTrainer(null)
-            cb()
-        })
-    }
+  const signOut = (cb) => {
+    fakeAuthService.logout(() => {
+      setTrainer(null);
+      cb();
+    });
+  };
 
-    return {
-        trainer,
-        signIn,
-        signOut        
-    }
-}
+  return {
+    trainer,
+    signIn,
+    signOut,
+  };
+};
 
 export const ProvideAuth = ({ children }) => {
-    const auth = useProvideAuth()
+  const auth = useProvideAuth();
 
-    return <authContext.Provider value={auth}>{children}</authContext.Provider>
-}
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+};
 
-export const useAuth = () => useContext(authContext)
+export const useAuth = () => useContext(authContext);

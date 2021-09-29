@@ -5,9 +5,6 @@
 /* PURPLE : #6c79db */
 /* BLUE : #76bdfe; */
 
-body {
-  background: rgb(235, 218, 212);
-}
 
 
 .App {
@@ -46,6 +43,10 @@ body {
   justify-content: center;
   font-size: 1.4rem;
 }
+.button-form {
+  margin-right: 40px;
+}
+
 
 .btn-search {
   background-color: cadetblue;
@@ -89,23 +90,21 @@ body {
   margin-bottom: 50px;
   width: 250px;
   height: 230px;
-  border-radius: 10% 10% 10% 10%;
+  border-radius: 10px;
   color: rgb(26, 24, 24);
   text-decoration: none;
   transition: 0.2s;
-  box-shadow: -7px 7px 5px 0px rgba(13, 13, 13, 0.304);
 }
 
 .card-container:hover {
-  background: #6d6685;
   margin: 1rem; 
-  border-radius: 10%;
   color: rgb(26, 24, 24);
   text-decoration: none;
-  transform: rotate(3deg);
+  transform: scale(1.03);
   animation: shake .5s infinite;
   animation-direction: alternate;
   transition: 0.2s;
+  box-shadow: -7px 7px 5px 0px rgba(13, 13, 13, 0.304);
 
 }
 
@@ -179,16 +178,23 @@ body {
   display: flex;
 }
 
+.form {
+  display: flex;
+  /* background-color: red; */
+  justify-content: center;
+}
+
 
 
 .form-container {
   margin-left: 20px;
+    
 }
 
 .input {
   border-radius: 5px;
   padding: 4px;
-  margin: 0 40px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .input-container {
@@ -200,6 +206,7 @@ body {
   display: flex;
   flex-direction: column;  
   align-items: center;
+  outline: none;
 }
 
 .input-login {
@@ -243,6 +250,7 @@ body {
   justify-content: space-between;
   min-width: 100vw;
   background:  #fb6c6c;
+  flex-wrap: nowrap;
 }
 
 .selected-page {
@@ -251,6 +259,10 @@ body {
 
 .pagination {
   display: flex;
+}
+
+.page-item {
+  cursor: pointer;
 }
 
 .pokemon-card-image {
@@ -343,7 +355,8 @@ body {
 .pokemon-logo {
   width: 300px;
   position: relative;
-  top: -50px;
+  top: 11rem;
+  
 }
 
 .pokemon-logo-pokedex {
@@ -380,6 +393,16 @@ body {
 .loader {
   width: 70px;
   animation: rotation 2s infinite linear;  
+}
+
+.login-container {
+  width: 300px;
+  
+}
+
+.welcome {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
 }
 
 
