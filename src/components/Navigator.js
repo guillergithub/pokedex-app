@@ -32,21 +32,21 @@ const Navigator = ({
             {...register("value")}
             placeholder="Find a Pokemon..."
           />
-          <button className="button-form">Find</button>
+          <button className="btn-primary button-form">Buscar</button>
         </form>
-
-        <select onChange={handleSelectType}>
-          <option defaultValue>Select type</option>
+        
+        <select onChange={handleSelectType} className="select">
+          <option defaultValue>Buscar por tipo</option>
           <option value={"all"}>All</option>
           {typeOptions}
         </select>
 
         <select
-          className="select-numbers-pokemons"
+          className="select select-numbers-pokemons"
           onChange={handleSelectAmount}
         >
           <option defaultValue value={null}>
-            Select amount
+            Cantidad
           </option>
           <option value={4}>4</option>
           <option value={8}>8</option>

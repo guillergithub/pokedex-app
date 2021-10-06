@@ -135,7 +135,7 @@ const Pokedex = () => {
     .slice(0, pokemonsPerPage)
     .map((elem) => {
       return (
-        <div className="col-3" key={elem.name}>
+        <div className="col-" key={elem.name}>
           <PokemonCard urlPokemon={elem.url} name={elem.name} />
         </div>
       );

@@ -41,7 +41,7 @@ const Login = () => {
             </LogoContainer>
             <GreetContainer>
               <h1>Benvenido entrenador</h1>
-              <h5>Inicia sesion para checar tus pokemones favoritos</h5>
+              <h5>Inicia sesion para buscar tus pokemones favoritos</h5>
             </GreetContainer>
             <FormContainer>
               <Input placeholder="Add your name" {...register("trainer")} />

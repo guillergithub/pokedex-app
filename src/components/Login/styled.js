@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export  const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-flow: column;
   background-color: #c54215;
@@ -15,6 +15,7 @@ export const LoginContainer = styled.div`
   height: 80%;
   display: flex;
   justify-content: space-between;
+  border-radius: 5px;
 `;
 
 // export
@@ -59,6 +60,19 @@ export const Input = styled.input`
   border-radius: 0;
   outline: none;
   color: white;
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+&::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
 `;
 
 export const GreetContainer = styled.div`
@@ -79,6 +93,12 @@ export const FormContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  width: 100%;
-  margin: 0 auto;
+  width: 100%;  
+  height: 100%;
+  img {
+      margin: 0 auto;
+      height: 100%;
+      width: 80%;
+    }
+
 `;
